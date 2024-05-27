@@ -1,0 +1,27 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "cancunf_g_vext-user-12-U1TDS34.94-12-7-2-d388bb-release-keys" ]
+  pull_request:
+    branches: [ "cancunf_g_vext-user-12-U1TDS34.94-12-7-2-d388bb-release-keys" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: configure
+      run: ./configure
+
+    - name: Install dependencies
+      run: make
+
+    - name: Run check
+      run: make check
+
+    - name: Run distcheck
+      run: make distcheck
